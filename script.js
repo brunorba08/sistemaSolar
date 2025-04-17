@@ -117,44 +117,55 @@ function drawStars() {
 
 function drawPlanet(x, y, radius, texture) {
   const gradient = ctx.createRadialGradient(x, y, 0, x, y, radius)
+
+  let baseColor = '#fff'
   switch (texture) {
     case 'mercury':
-      gradient.addColorStop(0, '#aaa')
+      baseColor = '#aaa'
+      gradient.addColorStop(0, baseColor)
       gradient.addColorStop(1, '#555')
       break
     case 'venus':
-      gradient.addColorStop(0, '#f9e85e')
+      baseColor = '#f9e85e'
+      gradient.addColorStop(0, baseColor)
       gradient.addColorStop(1, '#c8b63b')
       break
     case 'earth':
-      gradient.addColorStop(0, '#3498db')
+      baseColor = '#3498db'
+      gradient.addColorStop(0, baseColor)
       gradient.addColorStop(1, '#1f6395')
       break
     case 'mars':
-      gradient.addColorStop(0, '#ff5e3a')
+      baseColor = '#ff5e3a'
+      gradient.addColorStop(0, baseColor)
       gradient.addColorStop(1, '#c0392b')
       break
     case 'jupiter':
-      gradient.addColorStop(0, '#f5b041')
+      baseColor = '#f5b041'
+      gradient.addColorStop(0, baseColor)
       gradient.addColorStop(1, '#d35400')
       break
     case 'saturn':
-      gradient.addColorStop(0, '#f7dc6f')
+      baseColor = '#f7dc6f'
+      gradient.addColorStop(0, baseColor)
       gradient.addColorStop(1, '#d4ac0d')
       break
     case 'uranus':
-      gradient.addColorStop(0, '#82e0aa')
+      baseColor = '#82e0aa'
+      gradient.addColorStop(0, baseColor)
       gradient.addColorStop(1, '#39c0ed')
       break
     case 'neptune':
-      gradient.addColorStop(0, '#5dade2')
+      baseColor = '#5dade2'
+      gradient.addColorStop(0, baseColor)
       gradient.addColorStop(1, '#2c3e50')
       break
   }
 
   ctx.save()
-  ctx.shadowColor = 'white'
-  ctx.shadowBlur = 25
+  ctx.shadowColor = baseColor
+  ctx.shadowBlur = 40
+
   ctx.beginPath()
   ctx.arc(x, y, radius + 1, 0, Math.PI * 2)
   ctx.fillStyle = gradient
