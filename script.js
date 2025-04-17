@@ -250,14 +250,15 @@ function drawMouseTrail() {
     const g = Math.floor(255 - 200 * progress)
     const b = Math.floor(255)
 
-    const alpha = t1.alpha * (1 - progress) // vai desaparecendo
-    const lineWidth = 6 * (1 - progress) + 1 // afinando
+    const alpha = t1.alpha * (1 - progress)
+    const lineWidth = 6 * progress + 1 // agora começa grosso e afina
 
     ctx.beginPath()
     ctx.moveTo(t1.x, t1.y)
     ctx.lineTo(t2.x, t2.y)
     ctx.strokeStyle = `rgba(${r}, ${g}, ${b}, ${alpha})`
     ctx.lineWidth = lineWidth
+    ctx.lineCap = 'round' // suaviza a ponta
     ctx.shadowColor = `rgba(${r}, ${g}, ${b}, ${alpha * 1.5})`
     ctx.shadowBlur = 25 * (1 - progress)
     ctx.stroke()
