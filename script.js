@@ -245,23 +245,29 @@ function drawMouseTrail() {
 
     const progress = i / mouseTrail.length
 
-    const alpha = t1.alpha
-    const lineWidth = 8 * (1 - progress) + 1
+    // Gradiente de cores: branco → azul → roxo
+    const r = Math.floor(255 - 100 * progress)
+    const g = Math.floor(255 - 200 * progress)
+    const b = Math.floor(255)
+
+    const alpha = t1.alpha * (1 - progress) // vai desaparecendo
+    const lineWidth = 6 * (1 - progress) + 1 // afinando
 
     ctx.beginPath()
     ctx.moveTo(t1.x, t1.y)
     ctx.lineTo(t2.x, t2.y)
-    ctx.strokeStyle = `rgba(255, 255, 255, ${alpha})`
+    ctx.strokeStyle = `rgba(${r}, ${g}, ${b}, ${alpha})`
     ctx.lineWidth = lineWidth
-    ctx.shadowColor = 'white'
-    ctx.shadowBlur = 30 * (1 - progress)
+    ctx.shadowColor = `rgba(${r}, ${g}, ${b}, ${alpha * 1.5})`
+    ctx.shadowBlur = 25 * (1 - progress)
     ctx.stroke()
   }
 
   ctx.shadowBlur = 0
 
+  // Esmaecer o rastro
   for (let i = 0; i < mouseTrail.length; i++) {
-    mouseTrail[i].alpha -= 0.015
+    mouseTrail[i].alpha -= 0.02
   }
 
   mouseTrail = mouseTrail.filter((t) => t.alpha > 0)
